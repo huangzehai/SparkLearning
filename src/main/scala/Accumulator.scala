@@ -6,8 +6,18 @@ object Accumulator {
     val sc = new SparkContext(conf)
     val counter = sc.longAccumulator("account")
     val rdd = sc.parallelize(1 to 100)
+    //foreach is Spark Action
     rdd.foreach(item => counter.add(item))
     println("counter: " + counter.value)
+
+
+    //map is Spark Transformation
+    rdd.map { item =>
+      counter.add(item)
+      item
+    }
+
+    println("counter2: " + counter.value)
   }
 
 }
