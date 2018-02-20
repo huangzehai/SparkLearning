@@ -32,6 +32,7 @@ object SchemaMergingExample {
     //  |-- key: int (nullable = true)
 
     mergedDF.show
+
   }
 
 }
