@@ -1,6 +1,9 @@
 import org.apache.spark.sql.types.StructType
 import org.apache.spark.sql.{DataFrame, Dataset, SparkSession}
 
+/**
+  * 在本地运行很慢，要几分钟才能出结果
+  */
 object DeviceDataExample {
 
   case class DeviceData(device: String, deviceType: String, signal: Double, time: String)
