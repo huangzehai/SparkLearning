@@ -14,26 +14,26 @@ object CollectionSortExample {
   private def sorted = {
     val list = List(1, 3, 4, 6, 5, 2)
     val sortedList = list.sorted
-    println(s"sorted: ${sortedList}")
+    println(s"sorted: $sortedList")
   }
 
 
   private def sortWith = {
     val list = List(1, 3, 4, 6, 5, 2)
     val sortedList = list.sortWith((a, b) => a - b < 0)
-    println(s"sortWith: ${sortedList}")
+    println(s"sortWith: $sortedList")
   }
 
   private def sortBy = {
     val list = List(1, 3, 4, 6, 5, 2)
     val sortedList = list.sortBy(a => a)
-    println(s"sortBy: ${sortedList}")
+    println(s"sortBy: $sortedList")
   }
 
   private def tupleSortBy = {
     val list = List((1, 2), (5, 6), (3, 4))
     val sortedList = list.sortBy(_._1)
-    println(s"sortBy: ${sortedList}")
+    println(s"sortBy: $sortedList")
   }
 
   private def ordering = {
