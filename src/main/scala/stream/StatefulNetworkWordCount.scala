@@ -28,6 +28,8 @@ object StatefulNetworkWordCount {
     val pairs = words.map(word => (word, 1))
 
     // Update state using `updateStateByKey`
+    //    val runningCounts = pairs.updateStateByKey[Int]((newValues, count) => updateFunction(newValues, count))
+    //部分应用函数，用下划线代替整个参数列表
     val runningCounts = pairs.updateStateByKey[Int](updateFunction _)
 
     // Print the first ten elements of each RDD generated in this DStream to the console
