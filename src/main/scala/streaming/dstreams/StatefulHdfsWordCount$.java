@@ -1,7 +1,4 @@
-package stream
-
-import org.apache.spark.SparkConf
-import org.apache.spark.streaming._
+package streaming.dstreams;
 
 object StatefulHdfsWordCount {
   def main(args: Array[String]) {
