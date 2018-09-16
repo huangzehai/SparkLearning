@@ -1,4 +1,8 @@
-package streaming.dstreams;
+package streaming.dstreams
+
+import org.apache.spark.SparkConf
+import org.apache.spark.streaming.{Seconds, StreamingContext}
+;
 
 object StatefulNetworkWordCount {
   def updateFunction(newValues: Seq[Int], runningCount: Option[Int]): Option[Int] = {
