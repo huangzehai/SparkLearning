@@ -2,7 +2,7 @@ package batch.agg
 
 import org.apache.spark.{SparkConf, SparkContext}
 
-object aggregateByKey {
+object AggregateByKeyExample {
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf().setAppName(this.getClass.getName)
     conf.set("spark.eventLog.enabled", "true")
