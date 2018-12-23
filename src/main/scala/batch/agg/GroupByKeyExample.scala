@@ -2,7 +2,7 @@ package batch.agg
 
 import org.apache.spark.{SparkConf, SparkContext}
 
-object AggregateByKeyExample {
+object GroupByKeyExample {
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf().setAppName(this.getClass.getSimpleName)
     conf.set("spark.eventLog.enabled", "true")
@@ -17,8 +17,8 @@ object AggregateByKeyExample {
       val splits = line.split(",")
       (splits(1).toInt, splits(2).toDouble)
     })
-    val agg_rdd = ratings.aggregateByKey((0.0, 0))((acc, value) => (acc._1 + value, acc._2 + 1), (acc1, acc2) => (acc1._1 + acc2._1, acc1._2 + acc2._2))
-    val avgRatings = agg_rdd.mapValues(x => (x._1 / x._2))
-    avgRatings.saveAsTextFile("output/aggregateByKey/avgRatings")
+    val avgRatings = ratings.groupByKey.mapValues { values => values.sum / values.size }
+    avgRatings.saveAsTextFile("output/groupByKey/avgRatings")
   }
+
 }
