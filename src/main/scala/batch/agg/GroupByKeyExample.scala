@@ -9,7 +9,7 @@ object GroupByKeyExample {
     conf.set("spark.eventLog.dir", "file:/tmp/spark-events")
     val sc = new SparkContext(conf)
     //    val scores = sc.parallelize(Seq(("A", 110), ("A", 130), ("A", 120), ("B", 200), ("B", 206), ("B", 206), ("C", 150), ("C", 160), ("C", 170)))
-    val lines = sc.textFile("file:/Users/huangzehai/data/ml-latest/ratings.csv")
+    val lines = sc.textFile("file:/Users/huangzehai/data/ml-latest-small/ratings.csv")
     val linesWithoutHead = lines.mapPartitionsWithIndex {
       (idx, iterator) => if (idx == 0) iterator.drop(1) else iterator
     }
