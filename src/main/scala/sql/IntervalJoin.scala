@@ -14,12 +14,18 @@ object IntervalJoin extends Strategy with Serializable {
     Inner, Some(EqualTo(e1, e2)), hint)
       if ((o1 semanticEquals e1) && (o2 semanticEquals e2)) ||
         ((o1 semanticEquals e2) && (o2 semanticEquals e1)) =>
+      // matches cases like:
+      // tableA: start1--------------------------------end1
+      // tableB: ...-------------------end2
+      val condition1 = (end2 >= start1) && (end2 <= end1)
+      val condition2 = (end1 >= start2) && (end1 <= end2)
 
-      if ((end2 >= start1) && (end2 <= end2)) {
+      if (condition1 || condition2) {
         //start of the intersection
         val start = math.max(start1, start2)
         // end of the intersection
         val end = math.min(end1, end2)
+        // partitions, Assume 200 as default partition number.
         val part = Math.max(part1.getOrElse(200), part2.getOrElse(200))
         //create a new range to represent the intersection
         val result = RangeExec(Range(start, end, 1, Some(part), o1 :: Nil, isStreaming1))
