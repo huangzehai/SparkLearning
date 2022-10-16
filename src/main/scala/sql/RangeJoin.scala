@@ -8,9 +8,9 @@ object RangeJoin {
   def main(args: Array[String]): Unit = {
     val spark = SparkSession.builder().appName(this.getClass.getSimpleName)
       .config("spark.eventLog.enabled", "true")
-      .config("spark.eventLog.dir", "file:/tmp/spark-events")
+      .config("spark.eventLog.dir", "spark-events")
       .getOrCreate()
-//    spark.sqlContext.experimental.extraStrategies = IntervalJoin :: Nil
+    spark.sqlContext.experimental.extraStrategies = IntervalJoin :: Nil
 
     import spark.implicits._
     val tableA = spark.range(20000000).as('a)
